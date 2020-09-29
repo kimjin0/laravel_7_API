@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('todos', 'TodoController@index')->name('todos.index');
+Route::get('todos/{id}', 'TodoController@show')->name('todos.show');

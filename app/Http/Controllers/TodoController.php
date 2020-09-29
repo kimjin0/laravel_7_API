@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Todo;
+use App\Http\Resources\TodoResource;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
@@ -21,7 +22,10 @@ class TodoController extends Controller
 
         //물론 아래와 같은 식으로 쿼리를 할 수도 있어요
         // $allTodos = Todo::select('id', 'title', 'content')->get();
-        return $allTodos;
+
+        $filteredTodos = TodoResource::collection($allTodos);
+        
+        return $filteredTodos;
     }
 
     /**
@@ -57,6 +61,9 @@ class TodoController extends Controller
     public function show($id)
     {
         //
+        $fetchedTodo = Todo::find($id);
+        $filteredTodo = new TodoResource($fetchedTodo);
+        return $filteredTodo;
     }
 
     /**

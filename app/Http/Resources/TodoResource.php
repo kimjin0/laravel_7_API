@@ -14,6 +14,12 @@ class TodoResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+
+        return [
+            'title'     => "타이틀 : " .$this->itle,
+            'content'   => "내용 : " . $this->content,
+            'create_at' => $this->created_at->diffForHumans()
+        ];
+        // return parent::toArray($request);
     }
 }
