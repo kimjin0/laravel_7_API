@@ -49,6 +49,12 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         //
+        $userInputData = $request->all();
+
+        $newTodo = Todo::create($userInputData);
+
+        return $newTodo;
+
     }
 
     /**
@@ -85,10 +91,16 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // 기존 데이터를 수정해서  -> 수정된 데이터를 반호나
+    // 기존 데이터를 수정해서  -> 수정된 데이터를 반환
     public function update(Request $request, $id)
     {
         //
+        $fetchedTodo = Todo::find($id);
+        $fetchedTodo->update($request->all());
+
+        $updatedTodo = new TodoResource($fetchedTodo);
+
+        return $updatedTodo;
     }
 
     /**

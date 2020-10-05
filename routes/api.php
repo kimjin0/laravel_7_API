@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('todos', 'TodoController@index')->name('todos.index');
 Route::get('todos/{id}', 'TodoController@show')->name('todos.show');
+Route::post('todos', 'TodoController@store')->name('todos.store');
+Route::put('todos/{id}', 'TodoController@update')->name('todos.update');
